@@ -50,6 +50,7 @@ namespace ProjectTemplate.Web
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            .UseUrls("http://localhost:60237")
+            .UseStartup<Startup>();
     }
 }
