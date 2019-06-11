@@ -29,19 +29,22 @@ namespace ProjectTemplate.Repository.Implementations
             return _context.Set<T>().Where(c => c.DeletedAt == null).Where(expression).AsNoTracking();
         }
 
-        public void Create(T entity)
+        public string Create(T entity)
         {
-            _context.Set<T>().Add(entity);
+            var res =_context.Set<T>().Add(entity);
+            return res.Entity.Id;
         }
 
-        public void Update(T entity)
+        public string Update(T entity)
         {
-            _context.Set<T>().Update(entity);
+            var res = _context.Set<T>().Update(entity);
+            return res.Entity.Id;
         }
 
-        public void Delete(T entity)
+        public string Delete(T entity)
         {
-            _context.Set<T>().Remove(entity);
+            var res =_context.Set<T>().Remove(entity);
+            return res.Entity.Id;
         }
     }
 }
