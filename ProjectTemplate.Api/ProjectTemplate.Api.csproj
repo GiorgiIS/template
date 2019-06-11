@@ -17,4 +17,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectTemplate.Repository.EF\ProjectTemplate.Repository.EF.csproj" />
+  </ItemGroup>
+
 </Project>
