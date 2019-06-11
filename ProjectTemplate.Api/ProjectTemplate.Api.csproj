@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProjectTemplate.Application\ProjectTemplate.Application.csproj" />
+    <ProjectReference Include="..\ProjectTemplate.Common.Api\ProjectTemplate.Common.Api.csproj" />
     <ProjectReference Include="..\ProjectTemplate.Repository.EF\ProjectTemplate.Repository.EF.csproj" />
     <ProjectReference Include="..\ProjectTemplate.Services\ProjectTemplate.Services.csproj" />
   </ItemGroup>

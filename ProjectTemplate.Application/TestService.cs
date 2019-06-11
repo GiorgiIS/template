@@ -20,7 +20,7 @@ namespace ProjectTemplate.Application
         public object Create(SomeTestEntityCreateDto dto)
         {
             var entity = dto.Projection();
-            var created =_testRepository.Create(entity);
+            var created = _testRepository.Create(entity);
             var count = _testRepository.SaveChanges();
 
             return created;
@@ -28,14 +28,14 @@ namespace ProjectTemplate.Application
 
         public void Delete(string id)
         {
-         _testRepository.Delete(id);
+            _testRepository.Delete(id);
             var count = _testRepository.SaveChanges();
 
         }
 
-        public IQueryable<object> GetAll()
+        public IQueryable<object> GetAll(TestSearchQuery query)
         {
-            var result =_testRepository.GetAll();
+            var result = _testRepository.GetAll();
             return result;
         }
 

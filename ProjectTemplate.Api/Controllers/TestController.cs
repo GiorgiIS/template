@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectTemplate.Common.Api.RequestModels.Test;
 using ProjectTemplate.Interfaces.Services;
 using ProjectTemplate.Services.Dtos.SomeTestEntityDtos;
 using System;
@@ -19,30 +20,30 @@ namespace ProjectTemplate.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(GetTestEntityRequestModel model)
         {
-            var res = _testService.GetAll();
+            var res = _testService.GetAll(model.Query);
             return Ok(res);
         }
 
         [HttpPost]
-        public IActionResult Create(SomeTestEntityCreateDto dto)
+        public IActionResult Create(CreateTestEntityRequestModel model)
         {
-            _testService.Create(dto);
+            _testService.Create(model.TestEntityDto);
             return Ok();
         }
 
         [HttpDelete]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(DeleteTestEntityRequestModel model)
         {
-            _testService.Delete(id);
+            _testService.Delete(model.Id);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult Put(SomeTestEntityUpdateDto dto)
+        public IActionResult Put(UpdateTestEntityRequestModel model)
         {
-            _testService.Update(dto);
+            _testService.Update(model.SomeTestEntityUpdateDto);
             return Ok();
         }
     }
