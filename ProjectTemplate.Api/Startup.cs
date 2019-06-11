@@ -11,6 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NJsonSchema;
+using NSwag.AspNetCore;
+using NSwag.SwaggerGeneration.Processors.Security;
 using ProjectTemplate.Repository.EF;
 
 namespace ProjectTemplate.Api
@@ -42,8 +45,29 @@ namespace ProjectTemplate.Api
             {
                 //app.UseHsts();
             }
-
+            
             //app.UseHttpsRedirection();
+
+            app.UseSwaggerUi3WithApiExplorer(settings =>
+            {
+                settings.SwaggerUiRoute = Configuration["SwaggerSpecs:Route"];
+                settings.GeneratorSettings.DefaultPropertyNameHandling = PropertyNameHandling.CamelCase;
+                settings.GeneratorSettings.DefaultEnumHandling = EnumHandling.String;
+
+                settings.PostProcess = document =>
+                {
+                    document.Info.Version = Configuration["SwaggerSpecs:Version"];
+                    document.Info.Title = Configuration["SwaggerSpecs:Title"];
+                    document.Info.Description = Configuration["SwaggerSpecs:Description"];
+                    document.Info.TermsOfService = Configuration["SwaggerSpecs:TermsOfService"];
+                    document.Info.Contact = new NSwag.SwaggerContact
+                    {
+                        Name = Configuration["SwaggerSpecs:Contact"],
+                        Email = Configuration["SwaggerSpecs:Email"]
+                    };
+                };
+            });
+
             app.UseMvc();
         }
     }

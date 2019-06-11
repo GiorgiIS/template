@@ -11,21 +11,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{3E50B6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistance", "Persistance", "{C76C4F8A-C33A-4732-9C9D-A8CA661A9604}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Core", "ProjectTemplate.Core\ProjectTemplate.Core.csproj", "{6BE76E35-2E20-4F6A-9B8F-A227484AE3E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Core", "ProjectTemplate.Core\ProjectTemplate.Core.csproj", "{6BE76E35-2E20-4F6A-9B8F-A227484AE3E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Services", "ProjectTemplate.Services\ProjectTemplate.Services.csproj", "{6C55B613-667A-4297-8B2C-A4A1BA53880D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Services", "ProjectTemplate.Services\ProjectTemplate.Services.csproj", "{6C55B613-667A-4297-8B2C-A4A1BA53880D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Application", "ProjectTemplate.Application\ProjectTemplate.Application.csproj", "{E858DDD5-913B-4F8B-8ADD-C2E0FF20430A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Application", "ProjectTemplate.Application\ProjectTemplate.Application.csproj", "{E858DDD5-913B-4F8B-8ADD-C2E0FF20430A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Common", "ProjectTemplate.Common\ProjectTemplate.Common.csproj", "{26BFF0E2-2C20-4265-8584-A43FCF502AD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Common", "ProjectTemplate.Common\ProjectTemplate.Common.csproj", "{26BFF0E2-2C20-4265-8584-A43FCF502AD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Repository", "ProjectTemplate.Repository\ProjectTemplate.Repository.csproj", "{5883505E-C18F-42FB-B3B2-8697BE025546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Repository", "ProjectTemplate.Repository\ProjectTemplate.Repository.csproj", "{5883505E-C18F-42FB-B3B2-8697BE025546}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Repository.EF", "ProjectTemplate.Repository.EF\ProjectTemplate.Repository.EF.csproj", "{1A5D8E5D-008C-4C26-BB0B-E5B1359AF220}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Repository.EF", "ProjectTemplate.Repository.EF\ProjectTemplate.Repository.EF.csproj", "{1A5D8E5D-008C-4C26-BB0B-E5B1359AF220}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Web", "ProjectTemplate.Web\ProjectTemplate.Web.csproj", "{C18054BA-A41C-462E-9C11-E0730E55ABB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Api", "ProjectTemplate.Api\ProjectTemplate.Api.csproj", "{5A64402C-74D0-456D-AEC6-3A54A86531E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Api", "ProjectTemplate.Api\ProjectTemplate.Api.csproj", "{5A64402C-74D0-456D-AEC6-3A54A86531E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Web", "ProjectTemplate.Web\ProjectTemplate.Web.csproj", "{6096E554-8A33-4FB2-B575-5BD02191CAEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,14 +57,14 @@ Global
 		{1A5D8E5D-008C-4C26-BB0B-E5B1359AF220}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A5D8E5D-008C-4C26-BB0B-E5B1359AF220}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A5D8E5D-008C-4C26-BB0B-E5B1359AF220}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C18054BA-A41C-462E-9C11-E0730E55ABB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C18054BA-A41C-462E-9C11-E0730E55ABB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C18054BA-A41C-462E-9C11-E0730E55ABB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C18054BA-A41C-462E-9C11-E0730E55ABB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A64402C-74D0-456D-AEC6-3A54A86531E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A64402C-74D0-456D-AEC6-3A54A86531E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A64402C-74D0-456D-AEC6-3A54A86531E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A64402C-74D0-456D-AEC6-3A54A86531E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6096E554-8A33-4FB2-B575-5BD02191CAEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6096E554-8A33-4FB2-B575-5BD02191CAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6096E554-8A33-4FB2-B575-5BD02191CAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6096E554-8A33-4FB2-B575-5BD02191CAEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,7 +76,6 @@ Global
 		{26BFF0E2-2C20-4265-8584-A43FCF502AD4} = {3E50B61E-1233-4248-A840-A6B571EFB358}
 		{5883505E-C18F-42FB-B3B2-8697BE025546} = {C76C4F8A-C33A-4732-9C9D-A8CA661A9604}
 		{1A5D8E5D-008C-4C26-BB0B-E5B1359AF220} = {C76C4F8A-C33A-4732-9C9D-A8CA661A9604}
-		{C18054BA-A41C-462E-9C11-E0730E55ABB8} = {19C81D70-F2A7-42CA-864A-02BFC0278869}
 		{5A64402C-74D0-456D-AEC6-3A54A86531E2} = {19C81D70-F2A7-42CA-864A-02BFC0278869}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
