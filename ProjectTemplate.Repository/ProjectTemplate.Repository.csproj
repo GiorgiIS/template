@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProjectTemplate.Core\ProjectTemplate.Core.csproj" />
     <ProjectReference Include="..\ProjectTemplate.Repository.EF\ProjectTemplate.Repository.EF.csproj" />
   </ItemGroup>
 
