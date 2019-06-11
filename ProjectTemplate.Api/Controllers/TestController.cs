@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjectTemplate.Services;
+using ProjectTemplate.Interfaces.Services;
+using ProjectTemplate.Services.Dtos.SomeTestEntityDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,28 @@ namespace ProjectTemplate.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            _testService.TestMethod();
+            var res = _testService.GetAll();
+            return Ok(res);
+        }
+
+        [HttpPost]
+        public IActionResult Create(SomeTestEntityCreateDto dto)
+        {
+            _testService.Create(dto);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(string id)
+        {
+            _testService.Delete(id);
+            return Ok();
+        }
+
+        [HttpPut]
+        public IActionResult Put(SomeTestEntityUpdateDto dto)
+        {
+            _testService.Update(dto);
             return Ok();
         }
     }

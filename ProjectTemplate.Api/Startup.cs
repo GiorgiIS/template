@@ -15,10 +15,10 @@ using NJsonSchema;
 using NSwag.AspNetCore;
 using NSwag.SwaggerGeneration.Processors.Security;
 using ProjectTemplate.Application;
+using ProjectTemplate.Interfaces.Services;
 using ProjectTemplate.Repository.EF;
 using ProjectTemplate.Repository.Implementations;
 using ProjectTemplate.Repository.Interfaces;
-using ProjectTemplate.Services;
 
 namespace ProjectTemplate.Api
 {

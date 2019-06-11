@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjectTemplate.Common;
 using ProjectTemplate.Core.Entities;
 using ProjectTemplate.Repository.EF;
 using ProjectTemplate.Repository.Interfaces;
@@ -21,30 +22,42 @@ namespace ProjectTemplate.Repository.Implementations
 
         public IQueryable<T> GetAll()
         {
-            return _context.Set<T>().Where(c => c.DeletedAt == null).AsNoTracking();
+            return _context.Set<T>().AsNoTracking();
         }
 
         public IQueryable<T> Get(Expression<Func<T, bool>> expression)
         {
-            return _context.Set<T>().Where(c => c.DeletedAt == null).Where(expression).AsNoTracking();
+            return _context.Set<T>().Where(expression).AsNoTracking();
         }
 
-        public string Create(T entity)
+        public void Create(T entity)
         {
-            var res =_context.Set<T>().Add(entity);
-            return res.Entity.Id;
+            var res = _context.Set<T>().Add(entity);
         }
 
-        public string Update(T entity)
+        public void Update(T entity)
         {
+            entity.UpdatedAt = DateTimeHelper.DateTimeNow();
             var res = _context.Set<T>().Update(entity);
-            return res.Entity.Id;
         }
 
-        public string Delete(T entity)
+        public void Delete(T entity)
         {
-            var res =_context.Set<T>().Remove(entity);
-            return res.Entity.Id;
+            entity.DeletedAt = DateTimeHelper.DateTimeNow();
+            entity.UpdatedAt= DateTimeHelper.DateTimeNow();
+            var res = _context.Set<T>().Update(entity);
+        }
+
+        public void Delete(string id)
+        {
+            var entity = Get(c => c.Id == id).FirstOrDefault();
+            entity.DeletedAt = DateTimeHelper.DateTimeNow();
+            var res = _context.Set<T>().Update(entity);
+        }
+
+        public int SaveChanges()
+        {
+            return _context.SaveChanges();
         }
     }
 }

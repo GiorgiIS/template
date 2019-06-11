@@ -19,6 +19,10 @@ namespace ProjectTemplate.Repository.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<SomeTestEntity>().Property(p => p.SomeStringValue).HasMaxLength(50);
+            modelBuilder.Entity<SomeTestEntity>().Property(p => p.SomeDateTimeValue).IsRequired();
+
+
             base.OnModelCreating(modelBuilder);
         }
     }
