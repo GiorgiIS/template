@@ -27,11 +27,9 @@ namespace ProjectTemplate.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             var connectionString = Configuration["ConnectionStrings:Default"];
 
-            services.AddDbContext<CustomDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            services.AddDbContext<CustomDbContext>(options => options.UseSqlServer(connectionString));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
