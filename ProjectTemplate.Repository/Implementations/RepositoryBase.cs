@@ -30,9 +30,10 @@ namespace ProjectTemplate.Repository.Implementations
             return _context.Set<T>().Where(expression).AsNoTracking();
         }
 
-        public void Create(T entity)
+        public T Create(T entity)
         {
             var res = _context.Set<T>().Add(entity);
+            return res.Entity;
         }
 
         public void Update(T entity)

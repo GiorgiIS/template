@@ -10,7 +10,7 @@ namespace ProjectTemplate.Interfaces.Services
     {
         IQueryable<object> GetAll();
         IQueryable<object> GetById(string id);
-        void Create(SomeTestEntityCreateDto entity);
+        object Create(SomeTestEntityCreateDto entity);
         void Update(SomeTestEntityUpdateDto entity);
         void Delete(string id);
     }

@@ -11,7 +11,7 @@ namespace ProjectTemplate.Repository.Interfaces
     {
         IQueryable<T> GetAll();
         IQueryable<T> Get(Expression<Func<T, bool>> expression);
-        void Create(T entity);
+        T Create(T entity);
         void Update(T entity);
         void Delete(T entity);
         void Delete(string id);

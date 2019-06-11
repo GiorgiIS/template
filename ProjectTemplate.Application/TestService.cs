@@ -17,11 +17,13 @@ namespace ProjectTemplate.Application
             _testRepository = testRepository;
         }
 
-        public void Create(SomeTestEntityCreateDto dto)
+        public object Create(SomeTestEntityCreateDto dto)
         {
             var entity = dto.Projection();
-            _testRepository.Create(entity);
+            var created =_testRepository.Create(entity);
             var count = _testRepository.SaveChanges();
+
+            return created;
         }
 
         public void Delete(string id)
