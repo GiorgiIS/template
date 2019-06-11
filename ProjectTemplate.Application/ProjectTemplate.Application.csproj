@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectTemplate.Repository\ProjectTemplate.Repository.csproj" />
+    <ProjectReference Include="..\ProjectTemplate.Services\ProjectTemplate.Services.csproj" />
+  </ItemGroup>
+
 </Project>

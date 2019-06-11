@@ -12,36 +12,36 @@ namespace ProjectTemplate.Repository.Implementations
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : BaseEntity
     {
-        protected CustomDbContext RepositoryContext { get; set; }
+        private readonly CustomDbContext _context;
 
-        public RepositoryBase(CustomDbContext repositoryContext)
+        public RepositoryBase(CustomDbContext context)
         {
-            this.RepositoryContext = repositoryContext;
+            _context = context;
         }
 
         public IQueryable<T> GetAll()
         {
-            return RepositoryContext.Set<T>().Where(c => c.DeletedAt == null).AsNoTracking();
+            return _context.Set<T>().Where(c => c.DeletedAt == null).AsNoTracking();
         }
 
         public IQueryable<T> Get(Expression<Func<T, bool>> expression)
         {
-            return RepositoryContext.Set<T>().Where(c => c.DeletedAt == null).Where(expression).AsNoTracking();
+            return _context.Set<T>().Where(c => c.DeletedAt == null).Where(expression).AsNoTracking();
         }
 
         public void Create(T entity)
         {
-            RepositoryContext.Set<T>().Add(entity);
+            _context.Set<T>().Add(entity);
         }
 
         public void Update(T entity)
         {
-            RepositoryContext.Set<T>().Update(entity);
+            _context.Set<T>().Update(entity);
         }
 
         public void Delete(T entity)
         {
-            RepositoryContext.Set<T>().Remove(entity);
+            _context.Set<T>().Remove(entity);
         }
     }
 }

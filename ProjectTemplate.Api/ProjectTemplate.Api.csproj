@@ -16,12 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="logs\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProjectTemplate.Application\ProjectTemplate.Application.csproj" />
     <ProjectReference Include="..\ProjectTemplate.Repository.EF\ProjectTemplate.Repository.EF.csproj" />
+    <ProjectReference Include="..\ProjectTemplate.Services\ProjectTemplate.Services.csproj" />
   </ItemGroup>
 
 </Project>

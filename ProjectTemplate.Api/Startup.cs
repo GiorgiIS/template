@@ -14,7 +14,11 @@ using Microsoft.Extensions.Options;
 using NJsonSchema;
 using NSwag.AspNetCore;
 using NSwag.SwaggerGeneration.Processors.Security;
+using ProjectTemplate.Application;
 using ProjectTemplate.Repository.EF;
+using ProjectTemplate.Repository.Implementations;
+using ProjectTemplate.Repository.Interfaces;
+using ProjectTemplate.Services;
 
 namespace ProjectTemplate.Api
 {
@@ -33,6 +37,11 @@ namespace ProjectTemplate.Api
             var connectionString = Configuration["ConnectionStrings:Default"];
 
             services.AddDbContext<CustomDbContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddScoped<ITestRepository, TestRepository>();
+
+            services.AddScoped<ITestService, TestService>();
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

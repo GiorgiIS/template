@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ProjectTemplate.Common
 {
-    public class CustomDateTime
+    public class DateTimeHelper
     {
-        public static DateTime Now()
+        public static DateTime DateTimeNow()
         {
             return DateTime.Now;
         }

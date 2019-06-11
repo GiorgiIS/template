@@ -9,8 +9,8 @@ namespace ProjectTemplate.Core.Entities
     {
         public BaseEntity()
         {
-            CreatedAt = CustomDateTime.Now();
-            UpdatedAt = CustomDateTime.Now();
+            CreatedAt = DateTimeHelper.DateTimeNow();
+            UpdatedAt = DateTimeHelper.DateTimeNow();
             Id = Guid.NewGuid().ToString();
         }
 
