@@ -44,7 +44,6 @@ namespace ProjectTemplate.Application
             return filtered;
         }
 
-
         public IQueryable<object> GetById(string id)
         {
             var result = _testRepository.Get(c => c.Id == id);

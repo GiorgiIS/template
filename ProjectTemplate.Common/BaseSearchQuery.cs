@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjectTemplate.Services
+namespace ProjectTemplate.Common
 {
     public class BaseSearchQuery
     {
@@ -13,6 +13,6 @@ namespace ProjectTemplate.Services
         public DateTime? UpdatedAtTo { get; set; }
         public DateTime? DeletedAtFrom { get; set; }
         public DateTime? DeletedAtTo { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

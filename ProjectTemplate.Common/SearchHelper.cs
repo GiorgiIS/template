@@ -8,7 +8,12 @@ namespace ProjectTemplate.Common
 {
     public class SearchHelper
     {
-        public static IQueryable<Entity> Filter<Entity, SearchQuery>(IQueryable<Entity> entityQuery, SearchQuery searchQueryModel)
+        ///<summary>
+        ///<para>In search Query parametr name should be same as in entity, except datetime values and IsDeleted Property. DateTimes should have same name plus From or To e.x. CreatedAtFrom </para>
+        ///<para>Strings are compared by contains, DateTimes by range (CreatedAt will have to be in range of CreatedAtFrom and CreatedAtTo)</para>
+        ///<para>In SearchQueryModel IsDeleted Property, it will check if DeletedAt is null</para>
+        ///</summary>
+        public static IQueryable<Entity> Filter<Entity, SearchQuery>(IQueryable<Entity> entityQuery, SearchQuery searchQueryModel) where SearchQuery : BaseSearchQuery
         {
             if (searchQueryModel == null)
             {
