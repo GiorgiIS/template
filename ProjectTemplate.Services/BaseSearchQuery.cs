@@ -13,5 +13,6 @@ namespace ProjectTemplate.Services
         public DateTime? UpdatedAtTo { get; set; }
         public DateTime? DeletedAtFrom { get; set; }
         public DateTime? DeletedAtTo { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

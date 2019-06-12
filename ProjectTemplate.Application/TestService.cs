@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using ProjectTemplate.Services.Dtos.SomeTestEntityDtos;
+using ProjectTemplate.Core.Entities;
+using System.Reflection;
+using ProjectTemplate.Common;
 
 namespace ProjectTemplate.Application
 {
@@ -33,11 +36,14 @@ namespace ProjectTemplate.Application
 
         }
 
-        public IQueryable<object> GetAll(TestSearchQuery query)
+        public IQueryable<object> GetAll(TestSearchQuery queryModel)
         {
-            var result = _testRepository.GetAll();
-            return result;
+            var allData = _testRepository.GetAll();
+            var filtered = SearchHelper.Filter(allData, queryModel);
+
+            return filtered;
         }
+
 
         public IQueryable<object> GetById(string id)
         {

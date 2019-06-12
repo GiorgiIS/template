@@ -20,28 +20,28 @@ namespace ProjectTemplate.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(GetTestEntityRequestModel model)
+        public IActionResult Get([FromQuery]GetTestEntityRequestModel model)
         {
             var res = _testService.GetAll(model.Query);
             return Ok(res);
         }
 
         [HttpPost]
-        public IActionResult Create(CreateTestEntityRequestModel model)
+        public IActionResult Create([FromBody]CreateTestEntityRequestModel model)
         {
             _testService.Create(model.TestEntityDto);
             return Ok();
         }
 
         [HttpDelete]
-        public IActionResult Delete(DeleteTestEntityRequestModel model)
+        public IActionResult Delete([FromBody]DeleteTestEntityRequestModel model)
         {
             _testService.Delete(model.Id);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult Put(UpdateTestEntityRequestModel model)
+        public IActionResult Put([FromBody]UpdateTestEntityRequestModel model)
         {
             _testService.Update(model.SomeTestEntityUpdateDto);
             return Ok();
