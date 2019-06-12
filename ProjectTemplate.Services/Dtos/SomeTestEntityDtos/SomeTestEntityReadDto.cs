@@ -7,9 +7,9 @@ namespace ProjectTemplate.Services.Dtos.SomeTestEntityDtos
     public class SomeTestEntityReadDto
     {
         public string Id { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt{ get; set; }
-        public DateTime DeletedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt{ get; set; }
+        public DateTime? DeletedAt { get; set; }
 
 
         public int SomeIntValue { get; set; }
