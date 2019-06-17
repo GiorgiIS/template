@@ -16,7 +16,7 @@ namespace ProjectTemplate.Common.Api
     public abstract class CrudController<TEntity, Dto, SearchQuery, Repository> : ControllerBase
         where TEntity : EntityBase
         where Dto : IDtoBase<TEntity>
-        where SearchQuery: BaseSearchQuery
+        where SearchQuery : BaseSearchQuery
         where Repository : IRepositoryBase<TEntity>
     {
         protected readonly Repository _repository;
@@ -41,7 +41,7 @@ namespace ProjectTemplate.Common.Api
         [Route("{id}")]
         public virtual Dto Get([FromRoute]string id)
         {
-            var entity= _repository.Get(c => c.Id == id).FirstOrDefault();
+            var entity = _repository.Get(c => c.Id == id).FirstOrDefault();
             var dto = _mapper.Map<TEntity, Dto>(entity);
 
             return dto;

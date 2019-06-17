@@ -21,14 +21,14 @@ namespace ProjectTemplate.Api.Controllers
     {
         public TestController(ITestRepository repository, IMapper mapper) : base(repository, mapper) { }
 
-        public override TestEntityDto Get([FromRoute] string id)
-        {
-            return base.Get(id);
-        }
-
         public override string Create([FromBody, Required] TestEntityDto dto)
         {
             return base.Create(dto);
+        }
+
+        public override TestEntityDto Get([FromRoute] string id)
+        {
+            return base.Get(id);
         }
 
         public override IEnumerable<TestEntityDto> GetList([FromQuery] BaseSearchQuery query)
@@ -36,14 +36,14 @@ namespace ProjectTemplate.Api.Controllers
             return base.GetList(query);
         }
 
-        public override void Delete([FromRoute] string id)
-        {
-            base.Delete(id);
-        }
-
         public override void Update([FromBody] TestEntityDto dto)
         {
             base.Update(dto);
+        }
+
+        public override void Delete([FromRoute] string id)
+        {
+            base.Delete(id);
         }
     }
 }
