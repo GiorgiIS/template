@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ProjectTemplate.Core.Entities
 {
-    public abstract class BaseEntity
+    public abstract class EntityBase
     {
-        public BaseEntity()
+        public EntityBase()
         {
             CreatedAt = DateTimeHelper.DateTimeNow();
             UpdatedAt = DateTimeHelper.DateTimeNow();

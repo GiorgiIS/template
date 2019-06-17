@@ -19,6 +19,8 @@ using ProjectTemplate.Interfaces.Services;
 using ProjectTemplate.Repository.EF;
 using ProjectTemplate.Repository.Implementations;
 using ProjectTemplate.Repository.Interfaces;
+using AutoMapper;
+using ProjectTemplate.Common.Api;
 
 namespace ProjectTemplate.Api
 {
@@ -33,15 +35,20 @@ namespace ProjectTemplate.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc( mvc =>
+            {
+
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             var connectionString = Configuration["ConnectionStrings:Default"];
 
             services.AddDbContext<CustomDbContext>(options => options.UseSqlServer(connectionString));
 
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            services.AddAutoMapper(assemblies);
+
             services.AddScoped<ITestRepository, TestRepository>();
-
             services.AddScoped<ITestService, TestService>();
-
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

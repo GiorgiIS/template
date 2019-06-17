@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjectTemplate.Core.Entities
 {
-    public class SomeTestEntity : BaseEntity
+    public class SomeTestEntity : EntityBase
     {
         public int SomeIntValue { get; set; }
         public string SomeStringValue { get; set; }

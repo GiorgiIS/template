@@ -11,7 +11,7 @@ using System.Text;
 
 namespace ProjectTemplate.Repository.Implementations
 {
-    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : BaseEntity
+    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : EntityBase
     {
         private readonly CustomDbContext _context;
 
@@ -30,10 +30,10 @@ namespace ProjectTemplate.Repository.Implementations
             return _context.Set<T>().Where(expression).AsNoTracking();
         }
 
-        public T Create(T entity)
+        public string Create(T entity)
         {
             var res = _context.Set<T>().Add(entity);
-            return res.Entity;
+            return res.Entity.Id;
         }
 
         public void Update(T entity)

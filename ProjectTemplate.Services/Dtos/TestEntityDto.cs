@@ -5,25 +5,27 @@ using System.Text;
 
 namespace ProjectTemplate.Services.Dtos.SomeTestEntityDtos
 {
-    public class SomeTestEntityUpdateDto
+    public class TestEntityDto : DtoBase<SomeTestEntity>
     {
         public string Id { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public int SomeIntValue { get; set; }
         public string SomeStringValue { get; set; }
         public DateTime SomeDateTimeValue { get; set; }
 
-        public SomeTestEntity Projection()
+        public override SomeTestEntity Projection()
         {
-            var instance = new SomeTestEntity()
+            var entity = new SomeTestEntity()
             {
-                Id = Id,
-                SomeDateTimeValue = SomeDateTimeValue,
                 SomeIntValue = SomeIntValue,
-                SomeStringValue = SomeStringValue
+                SomeStringValue = SomeStringValue,
+                SomeDateTimeValue = SomeDateTimeValue
             };
 
-            return instance;
+            return entity;
         }
     }
 }

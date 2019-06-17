@@ -8,10 +8,5 @@ namespace ProjectTemplate.Interfaces.Services
 {
     public interface ITestService
     {
-        IQueryable<object> GetAll(TestSearchQuery query);
-        IQueryable<object> GetById(string id);
-        object Create(SomeTestEntityCreateDto entity);
-        void Update(SomeTestEntityUpdateDto entity);
-        void Delete(string id);
     }
 }
