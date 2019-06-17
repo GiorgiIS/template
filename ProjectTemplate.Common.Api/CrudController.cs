@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectTemplate.Core.Entities;
 using ProjectTemplate.Repository.Interfaces;
 using ProjectTemplate.Services.Dtos;
+using ProjectTemplate.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,17 +14,17 @@ namespace ProjectTemplate.Common.Api
 {
     [ApiController]
 
-    public abstract class CrudController<TEntity, Dto, SearchQuery, Repository> : ControllerBase
+    public abstract class CrudController<TEntity, Dto, SearchQuery, ICrudService> : ControllerBase
         where TEntity : EntityBase
         where Dto : IDtoBase<TEntity>
         where SearchQuery : BaseSearchQuery
-        where Repository : IRepositoryBase<TEntity>
+        where ICrudService : ICrudService<TEntity>
     {
-        protected readonly Repository _repository;
+        protected readonly ICrudService _crudService;
         private readonly IMapper _mapper;
-        protected CrudController(Repository repository, IMapper mapper)
+        protected CrudController(ICrudService crudService, IMapper mapper)
         {
-            _repository = repository;
+            _crudService = crudService;
             _mapper = mapper;
         }
 
@@ -31,8 +32,8 @@ namespace ProjectTemplate.Common.Api
         public virtual string Create([Required][FromBody] Dto dto)
         {
             var entity = dto.Projection();
-            var id = _repository.Create(entity);
-            var count = _repository.SaveChanges();
+            var id = _crudService.Create(entity);
+            var count = _crudService.SaveChanges();
 
             return id;
         }
@@ -41,7 +42,7 @@ namespace ProjectTemplate.Common.Api
         [Route("{id}")]
         public virtual Dto Get([FromRoute]string id)
         {
-            var entity = _repository.Get(c => c.Id == id).FirstOrDefault();
+            var entity = _crudService.Get(c => c.Id == id).FirstOrDefault();
             var dto = _mapper.Map<TEntity, Dto>(entity);
 
             return dto;
@@ -50,7 +51,7 @@ namespace ProjectTemplate.Common.Api
         [HttpGet]
         public virtual IEnumerable<Dto> GetList([FromQuery]SearchQuery query)
         {
-            var allData = _repository.GetAll();
+            var allData = _crudService.GetAll();
             var filtered = SearchHelper.Filter(allData, query);
             var dtoList = filtered.Select(f => _mapper.Map<TEntity, Dto>(f));
 
@@ -61,16 +62,16 @@ namespace ProjectTemplate.Common.Api
         [Route("{id}")]
         public virtual void Delete([FromRoute]string id)
         {
-            _repository.Delete(id);
-            var count = _repository.SaveChanges();
+            _crudService.Delete(id);
+            var count = _crudService.SaveChanges();
         }
 
         [HttpPut]
         public virtual void Update([FromBody]Dto dto)
         {
             var entity = dto.Projection();
-            _repository.Update(entity);
-            var count = _repository.SaveChanges();
+            _crudService.Update(entity);
+            var count = _crudService.SaveChanges();
         }
     }
 }

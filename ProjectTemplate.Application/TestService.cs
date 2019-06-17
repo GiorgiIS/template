@@ -11,7 +11,8 @@ using ProjectTemplate.Common;
 
 namespace ProjectTemplate.Application
 {
-    public class TestService : ITestService
+    public class TestService : CrudService<SomeTestEntity>, ITestService
     {
+        public TestService(ITestRepository repository) : base(repository) { }
     }
 }

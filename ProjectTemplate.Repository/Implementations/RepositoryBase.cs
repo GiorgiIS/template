@@ -14,7 +14,6 @@ namespace ProjectTemplate.Repository.Implementations
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : EntityBase
     {
         private readonly CustomDbContext _context;
-
         public RepositoryBase(CustomDbContext context)
         {
             _context = context;

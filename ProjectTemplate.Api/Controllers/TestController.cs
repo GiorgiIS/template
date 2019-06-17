@@ -17,9 +17,9 @@ namespace ProjectTemplate.Api.Controllers
 {
     [Route("Api/Test")]
     [ApiController]
-    public class TestController : CrudController<SomeTestEntity, TestEntityDto, BaseSearchQuery, ITestRepository>
+    public class TestController : CrudController<SomeTestEntity, TestEntityDto, BaseSearchQuery,  ITestService>
     {
-        public TestController(ITestRepository repository, IMapper mapper) : base(repository, mapper) { }
+        public TestController(ITestService service, IMapper mapper) : base(service, mapper) { }
 
         public override string Create([FromBody, Required] TestEntityDto dto)
         {

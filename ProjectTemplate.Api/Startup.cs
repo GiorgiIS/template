@@ -21,6 +21,7 @@ using ProjectTemplate.Repository.Implementations;
 using ProjectTemplate.Repository.Interfaces;
 using AutoMapper;
 using ProjectTemplate.Common.Api;
+using ProjectTemplate.Services.Interfaces;
 
 namespace ProjectTemplate.Api
 {
