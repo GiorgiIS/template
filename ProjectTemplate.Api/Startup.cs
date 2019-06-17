@@ -36,20 +36,16 @@ namespace ProjectTemplate.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc( mvc =>
-            {
-
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var connectionString = Configuration["ConnectionStrings:Default"];
-
             services.AddDbContext<CustomDbContext>(options => options.UseSqlServer(connectionString));
 
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
             services.AddAutoMapper(assemblies);
 
-            services.AddScoped<ITestRepository, TestRepository>();
-            services.AddScoped<ITestService, TestService>();
+            services.RegisterRepositories();
+            services.RegisterServices();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
