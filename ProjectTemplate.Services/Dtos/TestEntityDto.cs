@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ProjectTemplate.Services.Dtos.SomeTestEntityDtos
 {
-    public class TestEntityDto : DtoBase<SomeTestEntity>
+    public class TestEntityDto : IDtoBase<SomeTestEntity>
     {
         public string Id { get; set; }
         public DateTime? CreatedAt { get; set; }
@@ -16,7 +16,7 @@ namespace ProjectTemplate.Services.Dtos.SomeTestEntityDtos
         public string SomeStringValue { get; set; }
         public DateTime SomeDateTimeValue { get; set; }
 
-        public override SomeTestEntity Projection()
+        public SomeTestEntity Projection()
         {
             var entity = new SomeTestEntity()
             {

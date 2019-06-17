@@ -15,7 +15,7 @@ namespace ProjectTemplate.Common.Api
 
     public abstract class CrudController<TEntity, Dto, SearchQuery, Repository> : ControllerBase
         where TEntity : EntityBase
-        where Dto : DtoBase<TEntity>
+        where Dto : IDtoBase<TEntity>
         where SearchQuery: BaseSearchQuery
         where Repository : IRepositoryBase<TEntity>
     {
