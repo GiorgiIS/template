@@ -12,8 +12,6 @@ using System.Text;
 
 namespace ProjectTemplate.Common.Api
 {
-    [ApiController]
-
     public abstract class CrudController<TEntity, Dto, SearchQuery, ICrudService> : ControllerBase
         where TEntity : EntityBase
         where Dto : IDtoBase<TEntity>
@@ -21,7 +19,7 @@ namespace ProjectTemplate.Common.Api
         where ICrudService : ICrudService<TEntity>
     {
         protected readonly ICrudService _crudService;
-        private readonly IMapper _mapper;
+        protected readonly IMapper _mapper;
         protected CrudController(ICrudService crudService, IMapper mapper)
         {
             _crudService = crudService;
