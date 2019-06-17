@@ -21,7 +21,7 @@ namespace ProjectTemplate.Common.Api
     {
         protected readonly Repository _repository;
         private readonly IMapper _mapper;
-        public CrudController(Repository repository, IMapper mapper)
+        protected CrudController(Repository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
