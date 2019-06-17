@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Api", "Proj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Web", "ProjectTemplate.Web\ProjectTemplate.Web.csproj", "{6096E554-8A33-4FB2-B575-5BD02191CAEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTemplate.Common.Api", "ProjectTemplate.Common.Api\ProjectTemplate.Common.Api.csproj", "{67EAAA58-1F76-4DA8-BBDE-BE3799384B24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectTemplate.Common.Api", "ProjectTemplate.Common.Api\ProjectTemplate.Common.Api.csproj", "{67EAAA58-1F76-4DA8-BBDE-BE3799384B24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +83,7 @@ Global
 		{5883505E-C18F-42FB-B3B2-8697BE025546} = {C76C4F8A-C33A-4732-9C9D-A8CA661A9604}
 		{1A5D8E5D-008C-4C26-BB0B-E5B1359AF220} = {C76C4F8A-C33A-4732-9C9D-A8CA661A9604}
 		{5A64402C-74D0-456D-AEC6-3A54A86531E2} = {19C81D70-F2A7-42CA-864A-02BFC0278869}
+		{6096E554-8A33-4FB2-B575-5BD02191CAEE} = {19C81D70-F2A7-42CA-864A-02BFC0278869}
 		{67EAAA58-1F76-4DA8-BBDE-BE3799384B24} = {3E50B61E-1233-4248-A840-A6B571EFB358}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
