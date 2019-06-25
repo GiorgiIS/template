@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectTemplate.Common;
 using ProjectTemplate.Common.Api;
+using ProjectTemplate.Common.Api.RequestModels;
 using ProjectTemplate.Core.Entities;
 using ProjectTemplate.Interfaces.Services;
 using ProjectTemplate.Repository.Implementations;
@@ -17,7 +18,7 @@ namespace ProjectTemplate.Api.Controllers
 {
     [Route("Api/Test")]
     [ApiController]
-    public class TestController : CrudController<SomeTestEntity, TestEntityDto, BaseSearchQuery,  ITestService>
+    public class TestController : CrudController<SomeTestEntity, TestEntityDto, TestSearchQuery,  ITestService>
     {
         public TestController(ITestService service, IMapper mapper) : base(service, mapper) { }
 
@@ -31,7 +32,7 @@ namespace ProjectTemplate.Api.Controllers
             return base.Get(id);
         }
 
-        public override IEnumerable<TestEntityDto> GetList([FromQuery] BaseSearchQuery query)
+        public override IEnumerable<TestEntityDto> GetList([FromQuery] TestSearchQuery query)
         {
             return base.GetList(query);
         }

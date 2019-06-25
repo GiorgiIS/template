@@ -22,6 +22,7 @@ using ProjectTemplate.Repository.Interfaces;
 using AutoMapper;
 using ProjectTemplate.Common.Api;
 using ProjectTemplate.Services.Interfaces;
+using ProjectTemplate.Services;
 
 namespace ProjectTemplate.Api
 {
@@ -41,7 +42,7 @@ namespace ProjectTemplate.Api
             var connectionString = Configuration["ConnectionStrings:Default"];
             services.AddDbContext<CustomDbContext>(options => options.UseSqlServer(connectionString));
 
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            var assemblies = typeof(MappingProfile).Assembly;
             services.AddAutoMapper(assemblies);
 
             services.RegisterRepositories();
