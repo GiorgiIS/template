@@ -13,7 +13,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NJsonSchema;
 using NSwag.AspNetCore;
-using NSwag.SwaggerGeneration.Processors.Security;
 using ProjectTemplate.Application;
 using ProjectTemplate.Interfaces.Services;
 using ProjectTemplate.Repository.EF;
@@ -47,6 +46,8 @@ namespace ProjectTemplate.Api
 
             services.RegisterRepositories();
             services.RegisterServices();
+
+            services.AddOpenApiDocument(); // add OpenAPI v3 document
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -59,28 +60,12 @@ namespace ProjectTemplate.Api
             {
                 //app.UseHsts();
             }
-            
+
             //app.UseHttpsRedirection();
 
-            app.UseSwaggerUi3WithApiExplorer(settings =>
-            {
-                settings.SwaggerUiRoute = Configuration["SwaggerSpecs:Route"];
-                settings.GeneratorSettings.DefaultPropertyNameHandling = PropertyNameHandling.CamelCase;
-                settings.GeneratorSettings.DefaultEnumHandling = EnumHandling.String;
-
-                settings.PostProcess = document =>
-                {
-                    document.Info.Version = Configuration["SwaggerSpecs:Version"];
-                    document.Info.Title = Configuration["SwaggerSpecs:Title"];
-                    document.Info.Description = Configuration["SwaggerSpecs:Description"];
-                    document.Info.TermsOfService = Configuration["SwaggerSpecs:TermsOfService"];
-                    document.Info.Contact = new NSwag.SwaggerContact
-                    {
-                        Name = Configuration["SwaggerSpecs:Contact"],
-                        Email = Configuration["SwaggerSpecs:Email"]
-                    };
-                };
-            });
+            app.UseOpenApi(); // serve OpenAPI/Swagger documents
+            app.UseSwaggerUi3(); // serve Swagger UI
+            app.UseReDoc(); // serve ReDoc UI
 
             app.UseMvc();
         }

@@ -12,6 +12,15 @@ using System.Text;
 
 namespace ProjectTemplate.Common.Api
 {
+    /// <summary>
+    /// Generic CRUD controller for Creating, Reading, Updating and Deleting items
+    /// </summary>
+    /// <typeparam name="TEntity">Database entity</typeparam>
+    /// <typeparam name="Dto">Data transfer object, that mostly has fields like entitys</typeparam>
+    /// /// <typeparam name="SearchQuery">Search parametrs</typeparam>
+    /// /// <typeparam name="ICrudService">Every entity has its crud service</typeparam>
+    [Consumes("application/json")]
+    [Produces("application/json")]
     public abstract class CrudController<TEntity, Dto, SearchQuery, ICrudService> : ControllerBase
         where TEntity : EntityBase
         where Dto : IDtoBase<TEntity>
