@@ -7,6 +7,5 @@ namespace ProjectTemplate.Services.Dtos.TestEntityDtos
 {
     public abstract class CreateDtoBase<TEntity> where TEntity : EntityBase
     {
-        public abstract TEntity Projection();
     }
 }

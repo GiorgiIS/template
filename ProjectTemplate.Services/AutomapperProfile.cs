@@ -12,6 +12,8 @@ namespace ProjectTemplate.Services
         public MappingProfile()
         {
             CreateMap<SomeTestEntity, SomeTestEntityReadDto>().ReverseMap();
+            CreateMap<SomeTestEntity, SomeTestEntityCreateDto>().ReverseMap();
+            CreateMap<SomeTestEntity, SomeTestEntityUpdateDto>().ReverseMap();
         }
     }
 }

@@ -8,7 +8,5 @@ namespace ProjectTemplate.Services.Dtos.TestEntityDtos
     public abstract class UpdateDtoBase<TEntity> where TEntity : EntityBase
     {
         public string Id { get; set; }
-
-        public abstract TEntity Projection();
     }
 }
