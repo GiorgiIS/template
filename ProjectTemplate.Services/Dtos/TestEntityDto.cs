@@ -16,7 +16,20 @@ namespace ProjectTemplate.Services.Dtos.SomeTestEntityDtos
         public string SomeStringValue { get; set; }
         public DateTime SomeDateTimeValue { get; set; }
 
-        public SomeTestEntity Projection()
+        public SomeTestEntity FullProjection()
+        {
+            var entity = new SomeTestEntity()
+            {
+                SomeIntValue = SomeIntValue,
+                SomeStringValue = SomeStringValue,
+                SomeDateTimeValue = SomeDateTimeValue,
+                Id = Id
+            };
+
+            return entity;
+        }
+
+        public SomeTestEntity PartProjection()
         {
             var entity = new SomeTestEntity()
             {

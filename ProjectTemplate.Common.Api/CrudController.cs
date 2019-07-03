@@ -38,7 +38,7 @@ namespace ProjectTemplate.Common.Api
         [HttpPost]
         public virtual string Create([Required][FromBody] Dto dto)
         {
-            var entity = dto.Projection();
+            var entity = dto.PartProjection();
             var id = _crudService.Create(entity);
             var count = _crudService.SaveChanges();
 
@@ -76,9 +76,9 @@ namespace ProjectTemplate.Common.Api
         [HttpPut]
         public virtual void Update([FromBody]Dto dto)
         {
-            var entity = dto.Projection();
+            var entity = dto.FullProjection();
             _crudService.Update(entity);
             var count = _crudService.SaveChanges();
         }
     }
-}
+} 

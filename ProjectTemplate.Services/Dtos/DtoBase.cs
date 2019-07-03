@@ -7,6 +7,7 @@ namespace ProjectTemplate.Services.Dtos
 {
     public interface IDtoBase<TEntity> where TEntity : EntityBase
     {
-        TEntity Projection();
+        TEntity PartProjection();
+        TEntity FullProjection();
     }
 }
