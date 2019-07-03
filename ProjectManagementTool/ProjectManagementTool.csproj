@@ -6,6 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ObjectTemplates\CreateDtoTemplate.txt" />
+    <None Remove="ObjectTemplates\UpdateDtoTemplate.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="ObjectTemplates\CreateDtoTemplate.txt" />
+    <Compile Include="ObjectTemplates\UpdateDtoTemplate.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ProjectTemplate.Core\ProjectTemplate.Core.csproj" />
   </ItemGroup>
 
