@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectTemplate.Core.Entities;
 using ProjectTemplate.Repository.Interfaces;
 using ProjectTemplate.Services.Dtos;
+using ProjectTemplate.Services.Dtos.TestEntityDtos;
 using ProjectTemplate.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,11 @@ namespace ProjectTemplate.Common.Api
     /// /// <typeparam name="ICrudService">Every entity has its crud service</typeparam>
     [Consumes("application/json")]
     [Produces("application/json")]
-    public abstract class CrudController<TEntity, Dto, SearchQuery, ICrudService> : ControllerBase
+    public abstract class CrudController<TEntity, ReadDto, CreateDto, UpdateDto, SearchQuery, ICrudService> : ControllerBase
         where TEntity : EntityBase
-        where Dto : IDtoBase<TEntity>
+        where ReadDto : ReadDtoBase<TEntity>
+        where CreateDto : CreateDtoBase<TEntity>
+        where UpdateDto : UpdateDtoBase<TEntity>
         where SearchQuery : BaseSearchQuery
         where ICrudService : ICrudService<TEntity>
     {
@@ -36,9 +39,9 @@ namespace ProjectTemplate.Common.Api
         }
 
         [HttpPost]
-        public virtual string Create([Required][FromBody] Dto dto)
+        public virtual string Create([Required][FromBody] CreateDto dto)
         {
-            var entity = dto.PartProjection();
+            var entity = dto.Projection();
             var id = _crudService.Create(entity);
             var count = _crudService.SaveChanges();
 
@@ -47,20 +50,20 @@ namespace ProjectTemplate.Common.Api
 
         [HttpGet]
         [Route("{id}")]
-        public virtual Dto Get([FromRoute]string id)
+        public virtual ReadDto Get([FromRoute]string id)
         {
             var entity = _crudService.Get(c => c.Id == id).FirstOrDefault();
-            var dto = _mapper.Map<TEntity, Dto>(entity);
+            var dto = _mapper.Map<TEntity, ReadDto>(entity);
 
             return dto;
         }
 
         [HttpGet]
-        public virtual IEnumerable<Dto> GetList([FromQuery]SearchQuery query)
+        public virtual IEnumerable<ReadDto> GetList([FromQuery]SearchQuery query)
         {
             var allData = _crudService.GetAll();
             var filtered = SearchHelper.Filter(allData, query);
-            var dtoList = filtered.Select(f => _mapper.Map<TEntity, Dto>(f));
+            var dtoList = filtered.Select(f => _mapper.Map<TEntity, ReadDto>(f));
 
             return dtoList;
         }
@@ -74,9 +77,9 @@ namespace ProjectTemplate.Common.Api
         }
 
         [HttpPut]
-        public virtual void Update([FromBody]Dto dto)
+        public virtual void Update([FromBody]UpdateDto dto)
         {
-            var entity = dto.FullProjection();
+            var entity = dto.Projection();
             _crudService.Update(entity);
             var count = _crudService.SaveChanges();
         }

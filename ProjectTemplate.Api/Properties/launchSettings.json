@@ -20,7 +20,7 @@
     "ProjectTemplate.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "docs",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

@@ -1,5 +1,4 @@
 ﻿using ProjectTemplate.Core.Entities;
-using ProjectTemplate.Services.Dtos.SomeTestEntityDtos;
 using ProjectTemplate.Services.Interfaces;
 using System;
 using System.Collections.Generic;
