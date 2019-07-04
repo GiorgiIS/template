@@ -1,0 +1,12 @@
+﻿using ProjectTemplate.Core.Entities;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ProjectTemplate.Services.Dtos.[ENTITY_NAME]Dtos
+{
+    public class [ENTITY_NAME]ReadDto : ReadDtoBase<[ENTITY_NAME]>
+    {
+       [PROPORTIES]
+    }
+}

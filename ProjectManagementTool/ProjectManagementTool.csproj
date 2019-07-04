@@ -6,12 +6,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ObjectTemplates\ConfigureServiceHelperTemplate.txt" />
     <None Remove="ObjectTemplates\CreateDtoTemplate.txt" />
+    <None Remove="ObjectTemplates\DbContextTemplate.txt" />
+    <None Remove="ObjectTemplates\MappingProfileTemplate.txt" />
+    <None Remove="ObjectTemplates\ReadDtoTemplate.txt" />
+    <None Remove="ObjectTemplates\RepositoryInterfaceImplementationTemplate.txt" />
+    <None Remove="ObjectTemplates\RepositoryInterfaceTemplate.txt" />
+    <None Remove="ObjectTemplates\ServiceInterfaceImplementationTemplate.txt" />
+    <None Remove="ObjectTemplates\ServiceInterfaceTemplate.txt" />
     <None Remove="ObjectTemplates\UpdateDtoTemplate.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="ObjectTemplates\ConfigureServiceHelperTemplate.txt" />
     <Compile Include="ObjectTemplates\CreateDtoTemplate.txt" />
+    <Compile Include="ObjectTemplates\DbContextTemplate.txt" />
+    <Compile Include="ObjectTemplates\MappingProfileTemplate.txt" />
+    <Compile Include="ObjectTemplates\ReadDtoTemplate.txt" />
+    <Compile Include="ObjectTemplates\RepositoryInterfaceImplementationTemplate.txt" />
+    <Compile Include="ObjectTemplates\RepositoryInterfaceTemplate.txt" />
+    <Compile Include="ObjectTemplates\ServiceInterfaceImplementationTemplate.txt" />
+    <Compile Include="ObjectTemplates\ServiceInterfaceTemplate.txt" />
     <Compile Include="ObjectTemplates\UpdateDtoTemplate.txt" />
   </ItemGroup>
 

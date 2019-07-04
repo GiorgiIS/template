@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjectTemplate.Services.Dtos.[EntityName]s
+amespace ProjectTemplate.Services.Dtos.[ENTITY_NAME]Dtos
 {
-    public class [EntityName]UpdateDto: UpdateDtoBase<[EntityName]>
+    public class [ENTITY_NAME]UpdateDto: UpdateDtoBase<[ENTITY_NAME]>
     {
         [PROPERTIES]
     }

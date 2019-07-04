@@ -1,0 +1,13 @@
+﻿using ProjectTemplate.Core.Entities;
+using ProjectTemplate.Services.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ProjectTemplate.Interfaces.Services
+{
+    public interface I[ENTITY_NAME]Service : ICrudService<[ENTITY_NAME]>
+    {
+    }
+}

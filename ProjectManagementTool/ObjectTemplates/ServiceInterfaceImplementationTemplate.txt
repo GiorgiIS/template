@@ -1,0 +1,17 @@
+﻿using ProjectTemplate.Repository.Interfaces;
+using ProjectTemplate.Interfaces.Services;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using ProjectTemplate.Core.Entities;
+using System.Reflection;
+using ProjectTemplate.Common;
+
+namespace ProjectTemplate.Application
+{
+    public class [ENTITY_NAME]Service : CrudService<[ENTITY_NAME]>, I[ENTITY_NAME]Service
+    {
+        public [ENTITY_NAME]Service(I[ENTITY_NAME]Repository repository) : base(repository) { }
+    }
+}

@@ -1,0 +1,14 @@
+﻿using ProjectTemplate.Core.Entities;
+using ProjectTemplate.Repository.EF;
+using ProjectTemplate.Repository.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ProjectTemplate.Repository.Implementations
+{
+    public class [ENTITY_NAME]Repository : RepositoryBase<[ENTITY_NAME]>, I[ENTITY_NAME]Repository
+    {
+        public [ENTITY_NAME]Repository(CustomDbContext context) : base(context) { }
+    }
+}
