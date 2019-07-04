@@ -1,5 +1,10 @@
-﻿using System;
+﻿using ProjectTemplate.Core.Entities;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace ProjectManagementTool
 {
@@ -10,28 +15,38 @@ namespace ProjectManagementTool
             Console.WriteLine("Press any key to sync entites");
             var command = Console.ReadKey();
 
-            var path = @"C:\Users\gisaiashvili\source\repos\ProjectTemplate";
-            var name = "ProjectTemplate";
+            GetEntites();
 
-            SyncronizeEntities(path, name);
+            var path = @"C:\Users\gisaiashvili\source\repos\ProjectTemplate";
+
+            SyncronizeEntities(path);
 
             Console.ReadKey();
         }
 
-        private static void SyncronizeEntities(string projectPath, string projectName)
+        private static void SyncronizeEntities(string projectPath)
         {
-            var entityFullPath = $@"{projectPath}\ProjectTemplate.Core\Entities";
+            var entities = GetEntites();
 
-            foreach (string file in Directory.EnumerateFiles(entityFullPath, "*.cs"))
+            foreach (var e in entities)
             {
-                var fileName = GetFileNameFromPath(file);
-                if (fileName != "EntityBase.cs")
-                {
-                    string contents = File.ReadAllText(file);
-                    CreateDto(projectPath, fileName, contents);
+                var createDtoTemplate = GetCreateDtoTemplate(projectPath);
 
-                }
+                var entityName = e.Name;
+                var entityProporties = e.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
+
+                var createDtoContent = AddCreateDto(createDtoTemplate, entityName, entityProporties);
+
+
             }
+        }
+
+        private static IEnumerable<Type> GetEntites()
+        {
+            Assembly mscorlib = typeof(EntityBase).Assembly;
+            var resp = mscorlib.GetTypes().Where(t => t.Name != "EntityBase");
+            return resp;
+
         }
 
         private static string GetFileNameFromPath(string path)
@@ -40,9 +55,36 @@ namespace ProjectManagementTool
             return name.Replace("\\", "");
         }
 
-        private static void CreateDto(string projectPath, string name, string content)
+        private static string AddCreateDto(string createDtoTemplate, string entityName, List<PropertyInfo> entityProperties)
         {
-            var dtoFullPath = $@"{projectPath}\ProjectTemplate.Core\Entities";
+            var properties = string.Join("\n\t", entityProperties.Select(ep => "Public " + ep.ToString() + " {get; set;}"));
+            var createDto = createDtoTemplate.Replace("[ENTITY_NAME]", entityName).Replace("[PROPERTIES]", properties).Replace("System.", "").Replace("Int32", "int");
+            return createDto;
+        }
+
+        private static void AddUpdateDto()
+        {
+        }
+
+        private static void AddReadDto()
+        {
+        }
+
+        private static string GetCreateDtoTemplate(string projectPath)
+        {
+            var path = $@"{projectPath}\ProjectManagementTool\ObjectTemplates";
+            string implementation = File.ReadAllText(Directory.EnumerateFiles(path, "CreateDtoTemplate.txt").FirstOrDefault(f => GetFileNameFromPath(f) == "CreateDtoTemplate.txt"));
+            return implementation;
+        }
+
+        private static string GetUpdateDtoTemplate()
+        {
+            return string.Empty;
+        }
+
+        private static string GetReadDtoTemplate()
+        {
+            return string.Empty;
         }
     }
 }

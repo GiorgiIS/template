@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-amespace ProjectTemplate.Services.Dtos.[ENTITY_NAME]Dtos
+namespace ProjectTemplate.Services.Dtos.[ENTITY_NAME]Dtos
 {
     public class [ENTITY_NAME]UpdateDto: UpdateDtoBase<[ENTITY_NAME]>
     {
