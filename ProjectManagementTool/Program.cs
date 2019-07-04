@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace ProjectManagementTool
 {
@@ -33,11 +34,27 @@ namespace ProjectManagementTool
                 var createDtoTemplate = GetCreateDtoTemplate(projectPath);
 
                 var entityName = e.Name;
-                var entityProporties = e.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
+                var createDtoProporties = e.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
 
-                var createDtoContent = AddCreateDto(createDtoTemplate, entityName, entityProporties);
+                string dtoDir = $"{projectPath}\\ProjectTemplate.Services\\Dtos\\{entityName}Dtos";
 
+                if (!Directory.Exists(dtoDir))
+                {
+                    Directory.CreateDirectory(dtoDir);
+                }
 
+                var createDtoContent = AddCreateDto(createDtoTemplate, entityName, createDtoProporties);
+
+                string createDtoName = $@"{dtoDir}\{entityName}CreateDto.cs";
+
+                if (!File.Exists(createDtoName))
+                {
+                    using (FileStream fs = File.Create(createDtoName))
+                    {
+                        byte[] content = new UTF8Encoding(true).GetBytes(createDtoContent);
+                        fs.Write(content, 0, content.Length);
+                    }
+                }
             }
         }
 
@@ -57,8 +74,13 @@ namespace ProjectManagementTool
 
         private static string AddCreateDto(string createDtoTemplate, string entityName, List<PropertyInfo> entityProperties)
         {
-            var properties = string.Join("\n\t", entityProperties.Select(ep => "Public " + ep.ToString() + " {get; set;}"));
-            var createDto = createDtoTemplate.Replace("[ENTITY_NAME]", entityName).Replace("[PROPERTIES]", properties).Replace("System.", "").Replace("Int32", "int");
+            var properties = string.Join("\n\t\t", entityProperties.Select(ep => "public " + ep.ToString() + " { get; set; }"));
+            var createDto = createDtoTemplate.Replace("[ENTITY_NAME]", entityName)
+                .Replace("[PROPERTIES]", properties)
+                .Replace("System.", "")
+                .Replace("Int32", "int")
+                .Replace("String", "string");
+
             return createDto;
         }
 

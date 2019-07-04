@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjectTemplate.Services.Dtos.TestEntityDtos
+namespace ProjectTemplate.Services.Dtos
 {
     public abstract class ReadDtoBase<TEntity> where TEntity : EntityBase
     {
