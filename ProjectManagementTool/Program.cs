@@ -1,4 +1,5 @@
 ﻿using ProjectTemplate.Core.Entities;
+using ProjectTemplate.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -78,7 +79,6 @@ namespace ProjectManagementTool
             Assembly mscorlib = typeof(EntityBase).Assembly;
             var resp = mscorlib.GetTypes().Where(t => t.Name != "EntityBase");
             return resp;
-
         }
 
         private static string GetFileNameFromPath(string path)

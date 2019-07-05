@@ -41,7 +41,7 @@ namespace ProjectTemplate.Api
             var connectionString = Configuration["ConnectionStrings:Default"];
             services.AddDbContext<CustomDbContext>(options => options.UseSqlServer(connectionString));
 
-            var assemblies = typeof(MappingProfile).Assembly;
+            var assemblies = typeof(AutomapperProfile).Assembly;
             services.AddAutoMapper(assemblies);
 
             services.RegisterRepositories();

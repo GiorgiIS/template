@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using ProjectTemplate.Core.Entities;
 using ProjectTemplate.Services.Dtos.TestEntityDtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProjectTemplate.Services
 {
-    public class MappingProfile : Profile
+    public class AutomapperProfile : Profile
     {
-        public MappingProfile()
+        public AutomapperProfile()
         {
             CreateMap<SomeTestEntity, SomeTestEntityReadDto>().ReverseMap();
             CreateMap<SomeTestEntity, SomeTestEntityCreateDto>().ReverseMap();
