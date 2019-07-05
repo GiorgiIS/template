@@ -42,9 +42,10 @@ namespace ProjectManagementTool
 
                 Directory.CreateDirectory(dtoDir);
 
-                var createDtoProporties = e.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
-                var createDtoTemplate = GetCreateDtoTemplate(projectPath);
-                var createDtoContent = AddCreateDto(createDtoTemplate, entityName, createDtoProporties);
+                var dtoProperties = e.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
+
+                var createDtoTemplate = GetDtoTemplate(projectPath, "CreateDtoTemplate.txt");
+                var createDtoContent = AddDto(createDtoTemplate, entityName, dtoProperties);
                 var createDtoName = $@"{dtoDir}\{entityName}CreateDto.cs";
                 using (FileStream fs = File.Create(createDtoName))
                 {
@@ -52,9 +53,8 @@ namespace ProjectManagementTool
                     fs.Write(content, 0, content.Length);
                 }
 
-                var updateDtoProperties = e.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
-                var updateDtoTemplate = GetUpdateDtoTemplate(projectPath);
-                var updateDtoContent = AddUpdateDto(updateDtoTemplate, entityName, updateDtoProperties);
+                var updateDtoTemplate = GetDtoTemplate(projectPath, "UpdateDtoTemplate.txt");
+                var updateDtoContent = AddDto(updateDtoTemplate, entityName, dtoProperties);
                 var updateDtoName = $@"{dtoDir}\{entityName}UpdateDto.cs";
                 using (FileStream fs = File.Create(updateDtoName))
                 {
@@ -62,9 +62,8 @@ namespace ProjectManagementTool
                     fs.Write(content, 0, content.Length);
                 }
 
-                var readDtoProperties = e.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
-                var readDtoTemplate = GetReadDtoTemplate(projectPath);
-                var readDtoContent = AddReadDto(readDtoTemplate, entityName, readDtoProperties);
+                var readDtoTemplate = GetDtoTemplate(projectPath, "ReadDtoTemplate.txt");
+                var readDtoContent = AddDto(readDtoTemplate, entityName, dtoProperties);
                 var readDtoName = $@"{dtoDir}\{entityName}ReadDto.cs";
                 using (FileStream fs = File.Create(readDtoName))
                 {
@@ -88,60 +87,22 @@ namespace ProjectManagementTool
             return name.Replace("\\", "");
         }
 
-        private static string AddCreateDto(string createDtoTemplate, string entityName, List<PropertyInfo> entityProperties)
+        private static string AddDto(string dtoTemplate, string entityName, List<PropertyInfo> entityProperties)
         {
             var properties = string.Join("\n\t\t", entityProperties.Select(ep => "public " + ep.ToString() + " { get; set; }"));
-            var createDto = createDtoTemplate.Replace("[ENTITY_NAME]", entityName)
+            var dto = dtoTemplate.Replace("[ENTITY_NAME]", entityName)
                 .Replace("[PROPERTIES]", properties)
                 .Replace("System.", "")
                 .Replace("Int32", "int")
                 .Replace("String", "string");
 
-            return createDto;
+            return dto;
         }
 
-        private static string AddUpdateDto(string updateDtotemplate, string entityName, List<PropertyInfo> entityProperties)
-        {
-            var properties = string.Join("\n\t\t", entityProperties.Select(ep => "public " + ep.ToString() + " { get; set; }"));
-            var updateDto = updateDtotemplate.Replace("[ENTITY_NAME]", entityName)
-                .Replace("[PROPERTIES]", properties)
-                .Replace("System.", "")
-                .Replace("Int32", "int")
-                .Replace("String", "string");
-
-            return updateDto;
-        }
-
-        private static string AddReadDto(string readDtoTemplate, string entityName, List<PropertyInfo> entityProperties)
-        {
-            var properties = string.Join("\n\t\t", entityProperties.Select(ep => "public " + ep.ToString() + " { get; set; }"));
-            var readDto = readDtoTemplate.Replace("[ENTITY_NAME]", entityName)
-                .Replace("[PROPERTIES]", properties)
-                .Replace("System.", "")
-                .Replace("Int32", "int")
-                .Replace("String", "string");
-
-            return readDto;
-        }
-
-        private static string GetCreateDtoTemplate(string projectPath)
+        private static string GetDtoTemplate(string projectPath, string templateName)
         {
             var path = $@"{projectPath}\ProjectManagementTool\ObjectTemplates";
-            string implementation = File.ReadAllText(Directory.EnumerateFiles(path, "CreateDtoTemplate.txt").FirstOrDefault(f => GetFileNameFromPath(f) == "CreateDtoTemplate.txt"));
-            return implementation;
-        }
-
-        private static string GetUpdateDtoTemplate(string projectPath)
-        {
-            var path = $@"{projectPath}\ProjectManagementTool\ObjectTemplates";
-            string implementation = File.ReadAllText(Directory.EnumerateFiles(path, "UpdateDtoTemplate.txt").FirstOrDefault(f => GetFileNameFromPath(f) == "UpdateDtoTemplate.txt"));
-            return implementation;
-        }
-
-        private static string GetReadDtoTemplate(string projectPath)
-        {
-            var path = $@"{projectPath}\ProjectManagementTool\ObjectTemplates";
-            string implementation = File.ReadAllText(Directory.EnumerateFiles(path, "ReadDtoTemplate.txt").FirstOrDefault(f => GetFileNameFromPath(f) == "ReadDtoTemplate.txt"));
+            string implementation = File.ReadAllText(Directory.EnumerateFiles(path, templateName).FirstOrDefault(f => GetFileNameFromPath(f) == templateName));
             return implementation;
         }
     }
