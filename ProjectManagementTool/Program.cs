@@ -15,9 +15,7 @@ namespace ProjectManagementTool
         static void Main(string[] args)
         {
             Console.WriteLine("Press any key to sync entites");
-            var command = Console.ReadKey();
-
-            GetEntites();
+            //var command = Console.ReadKey();
 
             var path = @"C:\Users\gisaiashvili\source\repos\ProjectTemplate";
 
@@ -28,49 +26,24 @@ namespace ProjectManagementTool
 
         private static void SyncronizeEntities(string projectPath)
         {
+            var mapperProfile = GetAutomapperProfileImplementation(projectPath);
+
             var entities = GetEntites();
 
-            foreach (var e in entities)
+            foreach (var entity in entities)
             {
-                var entityName = e.Name;
-                string dtoDir = $"{projectPath}\\ProjectTemplate.Services\\Dtos\\{entityName}Dtos";
-
-                // ეს ნიშნავს იმას რომ უკვე გადატარებულია ამ ენთითიზე
-                if (Directory.Exists(dtoDir))
+                if (IsEntityAlreadyAdded(projectPath, entity))
                 {
                     continue;
                 }
 
-                Directory.CreateDirectory(dtoDir);
+                var dtoFactory = new DtoFactory(projectPath, entity);
 
-                var dtoProperties = e.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
+                dtoFactory.CreateDtoDirectory();
 
-                var createDtoTemplate = GetDtoTemplate(projectPath, "CreateDtoTemplate.txt");
-                var createDtoContent = AddDto(createDtoTemplate, entityName, dtoProperties);
-                var createDtoName = $@"{dtoDir}\{entityName}CreateDto.cs";
-                using (FileStream fs = File.Create(createDtoName))
-                {
-                    byte[] content = new UTF8Encoding(true).GetBytes(createDtoContent);
-                    fs.Write(content, 0, content.Length);
-                }
-
-                var updateDtoTemplate = GetDtoTemplate(projectPath, "UpdateDtoTemplate.txt");
-                var updateDtoContent = AddDto(updateDtoTemplate, entityName, dtoProperties);
-                var updateDtoName = $@"{dtoDir}\{entityName}UpdateDto.cs";
-                using (FileStream fs = File.Create(updateDtoName))
-                {
-                    byte[] content = new UTF8Encoding(true).GetBytes(updateDtoContent);
-                    fs.Write(content, 0, content.Length);
-                }
-
-                var readDtoTemplate = GetDtoTemplate(projectPath, "ReadDtoTemplate.txt");
-                var readDtoContent = AddDto(readDtoTemplate, entityName, dtoProperties);
-                var readDtoName = $@"{dtoDir}\{entityName}ReadDto.cs";
-                using (FileStream fs = File.Create(readDtoName))
-                {
-                    byte[] content = new UTF8Encoding(true).GetBytes(readDtoContent);
-                    fs.Write(content, 0, content.Length);
-                }
+                dtoFactory.CreateDto("CreateDtoTemplate.txt");
+                dtoFactory.CreateDto("UpdateDtoTemplate.txt");
+                dtoFactory.CreateDto("ReadDtoTemplate.txt");
             }
         }
 
@@ -80,30 +53,24 @@ namespace ProjectManagementTool
             var resp = mscorlib.GetTypes().Where(t => t.Name != "EntityBase");
             return resp;
         }
-
-        private static string GetFileNameFromPath(string path)
+        private static string GetAutomapperProfileImplementation(string projectPath)
         {
-            var name = path.Substring(path.LastIndexOf('\\'));
-            return name.Replace("\\", "");
-        }
+            var path = $@"{projectPath}\ProjectTemplate.Services";
+            string mapperProfile = File.ReadAllText(Directory.EnumerateFiles(path, "AutomapperProfile.cs").FirstOrDefault(f => FileHelper.GetFileNameFromPath(f) == "AutomapperProfile.cs"));
 
-        private static string AddDto(string dtoTemplate, string entityName, List<PropertyInfo> entityProperties)
-        {
-            var properties = string.Join("\n\t\t", entityProperties.Select(ep => "public " + ep.ToString() + " { get; set; }"));
-            var dto = dtoTemplate.Replace("[ENTITY_NAME]", entityName)
-                .Replace("[PROPERTIES]", properties)
-                .Replace("System.", "")
-                .Replace("Int32", "int")
-                .Replace("String", "string");
+            var startingIndex = mapperProfile.LastIndexOf('{');
+            var endingIndex = mapperProfile.IndexOf('}');
 
-            return dto;
-        }
+            var implementation = mapperProfile.Substring(startingIndex + 1, endingIndex - startingIndex - 1);
 
-        private static string GetDtoTemplate(string projectPath, string templateName)
-        {
-            var path = $@"{projectPath}\ProjectManagementTool\ObjectTemplates";
-            string implementation = File.ReadAllText(Directory.EnumerateFiles(path, templateName).FirstOrDefault(f => GetFileNameFromPath(f) == templateName));
             return implementation;
+        }
+
+        // დროებით ეს ნიშნავდეს რომ უკვე გადატარებულია ამ ენთითიზე.
+        private static bool IsEntityAlreadyAdded(string projectPath, Type entity)
+        {
+            string dtoDir = $"{projectPath}\\ProjectTemplate.Services\\Dtos\\{entity.Name}Dtos";
+            return Directory.Exists(dtoDir);
         }
     }
 }
