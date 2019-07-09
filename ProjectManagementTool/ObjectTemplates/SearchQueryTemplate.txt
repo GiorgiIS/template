@@ -1,0 +1,9 @@
+﻿using System;
+
+namespace ProjectTemplate.Common.Api.RequestModels
+{
+    public class [ENTITY_NAME]SearchQuery : BaseSearchQuery
+    {
+        [PROPERTIES]
+    }
+}
