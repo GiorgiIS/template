@@ -1,0 +1,12 @@
+﻿[USING_STATEMENTS]
+
+namespace ProjectTemplate.Services
+{
+    public class AutomapperProfile : Profile
+    {
+        public AutomapperProfile()
+        {
+            [CONFIGURE_MAPS]
+        }
+    }
+}

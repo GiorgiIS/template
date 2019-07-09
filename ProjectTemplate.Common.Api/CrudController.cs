@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectTemplate.Core.Entities;
 using ProjectTemplate.Repository.Interfaces;
 using ProjectTemplate.Services.Dtos;
-using ProjectTemplate.Services.Dtos.TestEntityDtos;
 using ProjectTemplate.Services.Interfaces;
 using System;
 using System.Collections.Generic;

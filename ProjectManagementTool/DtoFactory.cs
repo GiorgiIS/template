@@ -9,41 +9,36 @@ namespace ProjectManagementTool
 {
     public class DtoFactory
     {
-        private string _projectPath { get; set; }
-        private Type _entity { get; set; }
+        private readonly string _projectPath;
+        private readonly Type _entity;
+        private readonly List<PropertyInfo> _dtoProperties;
+        private readonly string _dtoDirectory;
 
         public DtoFactory(string projectPath, Type entity)
         {
             _projectPath = projectPath;
             _entity = entity;
+            _dtoProperties = _entity.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
+            _dtoDirectory = $"{_projectPath}\\ProjectTemplate.Services\\Dtos\\{_entity.Name}Dtos";
         }
 
-        public void CreateDto(string dtoFullName)
+        public void CreateDtos()
         {
-            var dtoProperties = _entity.GetProperties().Where(p => p.Name != "CreatedAt" && p.Name != "UpdatedAt" && p.Name != "DeletedAt" && p.Name != "Id").ToList();
-            string dtoDirectory = $"{_projectPath}\\ProjectTemplate.Services\\Dtos\\{_entity.Name}Dtos";
-
-            var dtoTemplate = GetDtoTemplate(dtoFullName);
-            var dtoContent = GetDtoContent(dtoTemplate, _entity.Name, dtoProperties);
-            var dtoName = $@"{dtoDirectory}\{_entity.Name}{dtoFullName.Replace("Template.txt", ".cs")}";
-            using (FileStream fs = File.Create(dtoName))
-            {
-                byte[] content = new UTF8Encoding(true).GetBytes(dtoContent);
-                fs.Write(content, 0, content.Length);
-            }
+            CreateDto("Create");
+            CreateDto("Read");
+            CreateDto("Update");
         }
 
         public void CreateDtoDirectory()
         {
-            string dtoDir = $"{_projectPath}\\ProjectTemplate.Services\\Dtos\\{_entity.Name}Dtos";
-            Directory.CreateDirectory(dtoDir);
+            string dtoDirectoryPath = $"{_projectPath}\\ProjectTemplate.Services\\Dtos\\{_entity.Name}Dtos";
+            FileHelper.CreateDirectory(dtoDirectoryPath);
         }
 
         private string GetDtoTemplate(string templateName)
         {
-            var path = $@"{_projectPath}\ProjectManagementTool\ObjectTemplates";
-            string implementation = File.ReadAllText(Directory.EnumerateFiles(path, templateName).FirstOrDefault(f => FileHelper.GetFileNameFromPath(f) == templateName));
-            return implementation;
+            var fullPath = $@"{_projectPath}\ProjectManagementTool\ObjectTemplates";
+            return FileHelper.GetFile(fullPath, templateName);
         }
         private string GetDtoContent(string dtoTemplate, string entityName, List<PropertyInfo> entityProperties)
         {
@@ -55,6 +50,14 @@ namespace ProjectManagementTool
                 .Replace("String", "string");
 
             return dto;
+        }
+
+        private void CreateDto(string dtoType)
+        {
+            var dtoTemplate = GetDtoTemplate($"{dtoType}DtoTemplate.txt");
+            var dtoContent = GetDtoContent(dtoTemplate, _entity.Name, _dtoProperties);
+            var dtoPath = $@"{_dtoDirectory}\{_entity.Name}{$"{dtoType}Dto.cs"}";
+            FileHelper.CreateFile(dtoPath, dtoContent);
         }
     }
 }

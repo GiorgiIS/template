@@ -1,6 +1,6 @@
-﻿using AutoMapper;
+using AutoMapper;
 using ProjectTemplate.Core.Entities;
-using ProjectTemplate.Services.Dtos.TestEntityDtos;
+using ProjectTemplate.Services.Dtos.SomeTestEntityDtos;
 
 namespace ProjectTemplate.Services
 {
@@ -8,9 +8,9 @@ namespace ProjectTemplate.Services
     {
         public AutomapperProfile()
         {
-            CreateMap<SomeTestEntity, SomeTestEntityReadDto>().ReverseMap();
             CreateMap<SomeTestEntity, SomeTestEntityCreateDto>().ReverseMap();
-            CreateMap<SomeTestEntity, SomeTestEntityUpdateDto>().ReverseMap();
+			CreateMap<SomeTestEntity, SomeTestEntityUpdateDto>().ReverseMap();
+			CreateMap<SomeTestEntity, SomeTestEntityReadDto>().ReverseMap();
         }
     }
 }
