@@ -48,6 +48,11 @@ namespace ProjectManagementTool
 
                     new DbContextFactory(projectPath, entity)
                         .CreateDbContext();
+
+                    new ServiceInterfaceFactory(projectPath, entity)
+                        .CreateServiceInterface();
+
+
                 }
             }
         }
