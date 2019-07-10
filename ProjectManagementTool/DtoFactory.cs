@@ -29,10 +29,12 @@ namespace ProjectManagementTool
             CreateDto("Update");
         }
 
-        public void CreateDtoDirectory()
+        public DtoFactory CreateDtoDirectory()
         {
             string dtoDirectoryPath = $"{_projectPath}\\ProjectTemplate.Services\\Dtos\\{_entity.Name}Dtos";
             FileHelper.CreateDirectory(dtoDirectoryPath);
+
+            return this;
         }
 
         private string GetDtoTemplate(string templateName)

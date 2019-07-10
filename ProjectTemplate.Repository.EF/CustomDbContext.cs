@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ProjectTemplate.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace ProjectTemplate.Repository.EF
 
         public DbSet<SomeTestEntity> SomeTestEntities { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
         }

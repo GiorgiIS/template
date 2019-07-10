@@ -36,15 +36,18 @@ namespace ProjectManagementTool
                 }
                 else
                 {
-                    var dtoFactory = new DtoFactory(projectPath, entity);
-                    dtoFactory.CreateDtoDirectory();
-                    dtoFactory.CreateDtos();
+                    new DtoFactory(projectPath, entity)
+                        .CreateDtoDirectory()
+                        .CreateDtos();
 
-                    var mapperProifileFactory = new AutomapperProfileFactory(projectPath, entity);
-                    mapperProifileFactory.CreateMapperProfile();
+                    new AutomapperProfileFactory(projectPath, entity)
+                        .CreateMapperProfile();
 
-                    var searchQueryFactory = new SearchQueryFactory(projectPath, entity);
-                    searchQueryFactory.CreateSearchQuery();
+                    new SearchQueryFactory(projectPath, entity)
+                        .CreateSearchQuery();
+
+                    new DbContextFactory(projectPath, entity)
+                        .CreateDbContext();
                 }
             }
         }
