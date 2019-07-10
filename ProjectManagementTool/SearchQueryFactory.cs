@@ -39,8 +39,8 @@ namespace ProjectManagementTool
                 }
                 else if (p.PropertyType == typeof(DateTime?))
                 {
-                    properties.Add($"public DateTime {p.Name}From" + " { get; set; }");
-                    properties.Add($"public DateTime {p.Name}To" + " { get; set; }");
+                    properties.Add($"public DateTime? {p.Name}From" + " { get; set; }");
+                    properties.Add($"public DateTime? {p.Name}To" + " { get; set; }");
                 }
             }
 
