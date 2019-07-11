@@ -14,7 +14,6 @@ using Microsoft.Extensions.Options;
 using NJsonSchema;
 using NSwag.AspNetCore;
 using ProjectTemplate.Application;
-using ProjectTemplate.Interfaces.Services;
 using ProjectTemplate.Repository.EF;
 using ProjectTemplate.Repository.Implementations;
 using ProjectTemplate.Repository.Interfaces;
@@ -43,8 +42,6 @@ namespace ProjectTemplate.Api
 
             var assemblies = typeof(AutomapperProfile).Assembly;
             services.AddAutoMapper(assemblies);
-
-            services.RegisterServices();
 
             services.AddOpenApiDocument(); // add OpenAPI v3 document
         }

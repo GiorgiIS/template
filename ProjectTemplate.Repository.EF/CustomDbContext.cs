@@ -10,8 +10,6 @@ namespace ProjectTemplate.Repository.EF
     {
         public CustomDbContext(DbContextOptions<CustomDbContext> options) : base(options) { }
 
-        public DbSet<SomeTestEntity> SomeTestEntities { get; set; }
-
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -19,9 +17,6 @@ namespace ProjectTemplate.Repository.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SomeTestEntity>().Property(p => p.SomeStringValue).HasMaxLength(50);
-            modelBuilder.Entity<SomeTestEntity>().Property(p => p.SomeDateTimeValue).IsRequired();
-
 
             base.OnModelCreating(modelBuilder);
         }

@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using ProjectTemplate.Application;
-using ProjectTemplate.Interfaces.Services;
 using ProjectTemplate.Repository.Implementations;
 using ProjectTemplate.Repository.Interfaces;
 using System;
@@ -13,9 +12,6 @@ namespace ProjectTemplate.Common.Api
     {
         public static IServiceCollection RegisterServicesAndRepositorys(this IServiceCollection services)
         {
-            services.AddScoped<ITestService, TestService>();
-            services.AddScoped<ITestRepository, TestRepository>();
-
 			return services;
         }
     }
