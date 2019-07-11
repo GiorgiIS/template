@@ -1,0 +1,17 @@
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using ProjectTemplate.Common.Api;
+using ProjectTemplate.Common.Api.RequestModels;
+using ProjectTemplate.Core.Entities;
+using ProjectTemplate.Interfaces.Services;
+using ProjectTemplate.Services.Dtos.[ENTITY_NAME]Dtos;
+
+namespace ProjectTemplate.Api.Controllers
+{
+    [Route("Api/[ENTITY_NAME]")]
+    [ApiController]
+    public class [ENTITY_NAME]Controller : CrudController<[ENTITY_NAME], [ENTITY_NAME]ReadDto, [ENTITY_NAME]CreateDto, [ENTITY_NAME]UpdateDto, [ENTITY_NAME]SearchQuery, I[ENTITY_NAME]Service>
+    {
+        public [ENTITY_NAME]Controller(I[ENTITY_NAME]Service service, IMapper mapper) : base(service, mapper) { }
+    }
+}
