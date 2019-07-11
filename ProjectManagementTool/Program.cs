@@ -14,14 +14,9 @@ namespace ProjectManagementTool
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Press any key to sync entites");
-            //var command = Console.ReadKey();
-
-            var path = @"C:\Users\gisaiashvili\source\repos\ProjectTemplate";
-
-            SyncronizeEntities(path);
-
+            Console.WriteLine("Press any key to use this dark power...");
             Console.ReadKey();
+            SyncronizeEntities(@"C:\Users\gisaiashvili\source\repos\ProjectTemplate");
         }
 
         private static void SyncronizeEntities(string projectPath)
