@@ -1,10 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using ProjectTemplate.Application;
+using ProjectTemplate.Interfaces.Services;
 using ProjectTemplate.Repository.Implementations;
 using ProjectTemplate.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProjectTemplate.Common.Api
 {
