@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace ProjectTemplate.Services.Interfaces
+namespace ProjectTemplate.Interfaces.Services
 {
     public interface ICrudService<T>
     {
