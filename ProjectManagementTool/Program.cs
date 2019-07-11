@@ -30,6 +30,9 @@ namespace ProjectManagementTool
 
             foreach (var entity in entities)
             {
+                new ConfigureServiceHelperFactory(projectPath, entity)
+                    .Create();
+
                 if (IsEntityAlreadyAdded(projectPath, entity))
                 {
                     continue;
@@ -54,6 +57,15 @@ namespace ProjectManagementTool
 
                     new ServiceInterfaceFactory(projectPath, entity)
                         .CreateServiceInterface();
+
+                    new RepositoryImplementationFactory(projectPath, entity)
+                        .Create();
+
+                    new ServiceImplementationFactory(projectPath, entity)
+                        .Create();
+
+                    new ConfigureServiceHelperFactory(projectPath, entity)
+                        .Create();
                 }
             }
         }
