@@ -43,6 +43,8 @@ namespace ProjectTemplate.Api
             var assemblies = typeof(AutomapperProfile).Assembly;
             services.AddAutoMapper(assemblies);
 
+            services.RegisterServicesAndRepositorys();
+
             services.AddOpenApiDocument(); // add OpenAPI v3 document
         }
 

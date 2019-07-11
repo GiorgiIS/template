@@ -15,7 +15,7 @@ namespace ProjectTemplate.Common
         ///</summary>
         public static IQueryable<Entity> Filter<Entity, SearchQuery>(IQueryable<Entity> entityQuery, SearchQuery searchQueryModel) where SearchQuery : BaseSearchQuery
         {
-            if (searchQueryModel == null)
+            if (searchQueryModel == null || !entityQuery.Any())
             {
                 return entityQuery;
             }
