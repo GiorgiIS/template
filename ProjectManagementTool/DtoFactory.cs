@@ -49,7 +49,7 @@ namespace ProjectManagementTool
                 .Replace("[PROPERTIES]", properties)
                 .Replace("System.", "")
                 .Replace("Int32", "int")
-                .Replace("Int64", "Long")
+                .Replace("Int64", "long")
                 .Replace("Single", "float")
                 .Replace("Decimal", "decimal")
                 .Replace("Double", "double")
