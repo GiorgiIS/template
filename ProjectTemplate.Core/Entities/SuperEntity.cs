@@ -13,5 +13,7 @@ namespace ProjectTemplate.Core.Entities
         public float SomeFloatValue { get; set; }
         public long SomeLongValue { get; set; }
         public decimal? SomeDecimalValue { get; set; }
+        public DateTime SomeDateTime { get; set; }
+        public DateTime? SomeNullableDateTime { get; set; }
     }
 }

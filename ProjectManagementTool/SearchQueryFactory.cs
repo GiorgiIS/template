@@ -26,9 +26,9 @@ namespace ProjectManagementTool
         public void CreateSearchQuery()
         {
             var searchQueryTemplate = FileHelper.GetFile(_searchQueryTemplatePath, "SearchQueryTemplate.txt");
+            var propsWithoutDateTimes = _entityProperties.Where(p => p.PropertyType != typeof(DateTime) && p.PropertyType != typeof(DateTime?)).ToList();
 
-            var properties = _entityProperties.Where(p => p.PropertyType != typeof(DateTime) && p.PropertyType != typeof(DateTime?))
-                .Select(ep => "public " + ep.ToString() + " { get; set; }").ToList();
+            var properties = PropertyHelper.TransforPropertysToStatements(propsWithoutDateTimes);
 
             foreach (var p in _entityProperties)
             {
@@ -46,11 +46,7 @@ namespace ProjectManagementTool
 
             var propertiesAsString = string.Join("\n\t\t", properties);
 
-            var searchQueryImplementation = searchQueryTemplate.Replace("[ENTITY_NAME]", _entity.Name)
-                .Replace("[PROPERTIES]", propertiesAsString)
-                .Replace("System.", "")
-                .Replace("Int32", "int")
-                .Replace("String", "string");
+            var searchQueryImplementation = searchQueryTemplate.Replace("[ENTITY_NAME]", _entity.Name).Replace("[PROPERTIES]", propertiesAsString);
 
             FileHelper.CreateFile(_searchQueryFolderPath + $"\\{_entity.Name}SearchQuery.cs", searchQueryImplementation);
         }

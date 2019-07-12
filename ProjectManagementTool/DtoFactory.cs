@@ -44,18 +44,10 @@ namespace ProjectManagementTool
         }
         private string GetDtoContent(string dtoTemplate, string entityName, List<PropertyInfo> entityProperties)
         {
-            var properties = string.Join("\n\t\t", entityProperties.Select(ep => "public " + ep.ToString() + " { get; set; }"));
+            var properties = PropertyHelper.TransforPropertysToStatements(entityProperties);
+            var propertiesAsString = string.Join("\n\t\t", properties);
             var dto = dtoTemplate.Replace("[ENTITY_NAME]", entityName)
-                .Replace("[PROPERTIES]", properties)
-                .Replace("System.", "")
-                .Replace("Int32", "int")
-                .Replace("Int64", "long")
-                .Replace("Single", "float")
-                .Replace("Decimal", "decimal")
-                .Replace("Double", "double")
-                .Replace("Boolean", "bool")
-                .Replace("Single", "float")
-                .Replace("String", "string");
+                .Replace("[PROPERTIES]", propertiesAsString );
 
             return dto;
         }
