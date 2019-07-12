@@ -49,6 +49,12 @@ namespace ProjectManagementTool
                 .Replace("[PROPERTIES]", properties)
                 .Replace("System.", "")
                 .Replace("Int32", "int")
+                .Replace("Int64", "Long")
+                .Replace("Single", "float")
+                .Replace("Decimal", "decimal")
+                .Replace("Double", "double")
+                .Replace("Boolean", "bool")
+                .Replace("Single", "float")
                 .Replace("String", "string");
 
             return dto;
